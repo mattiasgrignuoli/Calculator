@@ -1,0 +1,61 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.wrapper-numbers {
+  width: 40%;
+  margin: 4vh auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 5px;
+}
+
+.screen {
+  grid-column: 1 / -1;
+  background-color: rgb(161, 193, 169);
+  text-align: right;
+  padding-right: 1rem;
+  height: 14vh;
+}
+
+.screen p {
+  margin: 1rem;
+}
+
+.screen .current {
+  font-size: 4.5rem;
+}
+
+.screen .old {
+  font-size: 1rem;
+}
+
+button {
+  font-size: clamp(.5rem, 4.5rem, 6rem);
+  min-width: 12vh;
+  min-height: 12vh;
+  background-color: rgb(229, 229, 229);
+  border-color: black;
+  border-width: .1rem;
+  text-align: center;
+}
+
+button:hover {
+  background-color: rgb(243, 255, 255);
+  cursor: pointer;
+  color: rgb(80, 80, 80);
+}
+
+#del {
+  grid-column: span 3;
+}
+
+#AC {
+  grid-column: span 1;
+}
+
+.destroy {
+  opacity: 0;
+}
