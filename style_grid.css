@@ -46,11 +46,23 @@ button:hover {
   background-color: rgb(243, 255, 255);
   cursor: pointer;
   color: rgb(80, 80, 80);
+  border: 3px solid black;
 }
 
 #del {
   grid-column: span 3;
+  background-color: rgb(160, 32, 32);
+  color: antiquewhite;
 }
+
+ #equal {
+  background-color: rgb(40, 40, 149);
+  color: antiquewhite;
+ }
+
+ #equal:hover, #del:hover {
+  border: 3px solid red;
+ }
 
 #AC {
   grid-column: span 1;
