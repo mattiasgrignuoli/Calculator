@@ -45,7 +45,10 @@ equality.onclick = (e) => {
     dividebyZero();
   };
   let result = eval(previousScreen.textContent);
-  currentScreen.textContent = result;
+  if (String(result).split('.')[1] && String(result).length >= 6) {
+    currentScreen.textContent = result.toFixed(5);
+    return;
+  } currentScreen.textContent = result;
 };
 
 const allButtons = document.querySelectorAll(".wrapper-numbers button")
