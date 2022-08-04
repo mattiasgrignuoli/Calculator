@@ -39,20 +39,54 @@ deleteBtn.onclick = (e) => {
     currentScreen.textContent = currentScreen.textContent.slice(0, -1);
 }
 
+// equality.onclick = (e) => {
+//   previousScreen.textContent = previousScreen.textContent + currentScreen.textContent;
+//   if (previousScreen.textContent.slice(-2) == "/0") {
+//     dividebyZero();
+//   };
+//   let result = eval(previousScreen.textContent);
+//   if (result.toString().split('.')[1] && result.toString().length >= 6) {
+//     currentScreen.textContent = result.toFixed(5);
+//     return;
+//   } currentScreen.textContent = result;
+// };
+
+operationsObj = {
+  "+" : (a, b) => a + b,
+  "-" : (a, b) => a - b,
+  "*" : (a, b) => a * b,
+  ":" : (a, b) => a / b,
+}
+
 equality.onclick = (e) => {
   previousScreen.textContent = previousScreen.textContent + currentScreen.textContent;
   if (previousScreen.textContent.slice(-2) == "/0") {
     dividebyZero();
+  }
+  if (previousScreen.textContent.indexOf('+') != -1) {
+    let result = operationsObj['+'](+previousScreen.textContent.split('+')[0], +previousScreen.textContent.split('+')[1]);
+    showResult(result);
+  } else if (previousScreen.textContent.indexOf('-') != -1) {
+    let result = operationsObj['-'](+previousScreen.textContent.split('-')[0], +previousScreen.textContent.split('-')[1]);
+    showResult(result);
+  } else if (previousScreen.textContent.indexOf('*') != -1) {
+    let result = operationsObj['*'](+previousScreen.textContent.split('*')[0], +previousScreen.textContent.split('*')[1]);
+    showResult(result);
+  } else if (previousScreen.textContent.indexOf(':') != -1) {
+    let result = operationsObj[':'](+previousScreen.textContent.split(':')[0], +previousScreen.textContent.split(':')[1]);
+    showResult(result);
+  }
   };
-  let result = eval(previousScreen.textContent);
-  if (String(result).split('.')[1] && String(result).length >= 6) {
-    currentScreen.textContent = result.toFixed(5);
-    return;
-  } currentScreen.textContent = result;
-};
 
-const allButtons = document.querySelectorAll(".wrapper-numbers button")
+
+function showResult(res){
+  if (res.toString().split('.')[1] && res.toString().length >= 6) {
+    return currentScreen.textContent = res.toFixed(5);
+    }
+  return currentScreen.textContent = res;
+}
+
 
 function dividebyZero(){
-  alert("Can't divide by zero")
+  alert("Can't divide by zero");
 }
