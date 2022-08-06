@@ -20,7 +20,7 @@ for (let num of numbers){
 for (let operator of operators) {  
   operator.onclick = (e) => {
     previousScreen.textContent += currentScreen.textContent + e.target.textContent;
-    currentScreen.textContent = "0";
+    currentScreen.textContent = '0';
   }
 }
 
@@ -36,26 +36,43 @@ deleteBtn.onclick = (e) => {
     currentScreen.textContent = '0';
     return;
     }
-    currentScreen.textContent = currentScreen.textContent.slice(0, -1);
+    currentScreen.textContent = currentScreen.textContent.slice(0,-1);
 }
 
-// equality.onclick = (e) => {
-//   previousScreen.textContent = previousScreen.textContent + currentScreen.textContent;
-//   if (previousScreen.textContent.slice(-2) == "/0") {
-//     dividebyZero();
-//   };
-//   let result = eval(previousScreen.textContent);
-//   if (result.toString().split('.')[1] && result.toString().length >= 6) {
-//     currentScreen.textContent = result.toFixed(5);
-//     return;
-//   } currentScreen.textContent = result;
-// };
 
 operationsObj = {
-  "+" : (a, b) => a + b,
-  "-" : (a, b) => a - b,
-  "*" : (a, b) => a * b,
-  ":" : (a, b) => a / b,
+  "+" : function(sumArray) {
+    let sum = 0;
+    for (const value of sumArray) {
+      sum += +value;
+    }
+    return sum;
+  },
+
+  "-" : function(sottrArray) {
+    let sottr = sottrArray[0];
+    for (const value of sottrArray.slice(1,)) {
+      sottr -= +value;
+    }
+    return sottr;
+  },
+
+  "*" : function(moltArray) {
+    let molt = 1;
+    for (const value of moltArray) {
+      molt *= +value;
+    }
+    return molt;
+  },
+
+  ":" : function(divArray) {
+    let division = divArray[0];
+    for (const value of divArray.slice(1,)) {
+      division /= +value;
+      console.log(division)
+    }
+    return division;
+  },
 }
 
 equality.onclick = (e) => {
@@ -64,20 +81,20 @@ equality.onclick = (e) => {
     dividebyZero();
   }
   if (previousScreen.textContent.indexOf('+') != -1) {
-    let result = operationsObj['+'](+previousScreen.textContent.split('+')[0], +previousScreen.textContent.split('+')[1]);
+    let result = operationsObj['+'](previousScreen.textContent.split('+'));
     showResult(result);
   } else if (previousScreen.textContent.indexOf('-') != -1) {
-    let result = operationsObj['-'](+previousScreen.textContent.split('-')[0], +previousScreen.textContent.split('-')[1]);
+    let result = operationsObj['-'](previousScreen.textContent.split('-'));
     showResult(result);
   } else if (previousScreen.textContent.indexOf('*') != -1) {
-    let result = operationsObj['*'](+previousScreen.textContent.split('*')[0], +previousScreen.textContent.split('*')[1]);
+    let result = operationsObj['*'](previousScreen.textContent.split('*'));
     showResult(result);
   } else if (previousScreen.textContent.indexOf(':') != -1) {
-    let result = operationsObj[':'](+previousScreen.textContent.split(':')[0], +previousScreen.textContent.split(':')[1]);
+    let result = operationsObj[':'](previousScreen.textContent.split(':'));
     showResult(result);
-  }
+  } previousScreen.textContent = '';
   };
-
+ 
 
 function showResult(res){
   if (res.toString().split('.')[1] && res.toString().length >= 6) {
